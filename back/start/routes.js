@@ -16,7 +16,6 @@ Route.delete('/products/:id', 'ProductController.delete')
 
 
 
-// Rota para criar um novo adicional associado a um produto
 Route.post('products/:productId/additionals', 'AdditionalController.store')
 
 Route.get('products/:productId/additionals', 'AdditionalController.index')
@@ -24,10 +23,8 @@ Route.get('products/:productId/additionals', 'AdditionalController.index')
 
 
 
-// Rota para criar um novo pedido
 Route.post('orders', 'OrderController.store')
 
-// Rota para visualizar um pedido específico
 Route.get('orders/:id', 'OrderController.show')
 
 Route.get('orders', 'OrderController.index')

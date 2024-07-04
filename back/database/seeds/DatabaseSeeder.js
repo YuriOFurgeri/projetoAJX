@@ -26,7 +26,7 @@ class DatabaseSeeder {
       image_url: 'https://cdn.dooca.store/418/products/coca.jpg?v=1589835707&webp=0'
     })
 
-    // Criar produtos
+
     const pastelCarne = await Product.create({
       name: 'Pastel de Carne Simples',
       description: 'Carne moída',
@@ -99,7 +99,7 @@ class DatabaseSeeder {
       category_id: bebida.id,
     })
 
-    // Criar adicionais para o smartphone
+
     await Additional.create({
       product_id: 1,
       addoption:false,

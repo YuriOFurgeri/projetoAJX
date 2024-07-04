@@ -135,12 +135,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               
               padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10), // Bordas arredondadas
-                side: BorderSide(color: Colors.black, width: 2), // Borda do botão
+                borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Colors.black, width: 2),
               ),
               textStyle: TextStyle(
-                fontSize: 24, // Tamanho do texto
-                fontWeight: FontWeight.bold, // Peso do texto
+                fontSize: 24,
+                fontWeight: FontWeight.bold, 
               ),
             ),
               child: Text('Adicionar ao Carrinho'),

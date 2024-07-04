@@ -81,7 +81,8 @@ class CartPage extends StatelessWidget {
                         quantity: item.quantity,
                         price: item.product.price,
                       )).toList(),
-                      payment_method: 'credit_card',  // Exemplo de método de pagamento
+                      payment_method: 'credit_card',
+                      //lembrar de implementar pagamentos
                     );
 
                     await apiService.createOrder(order);
