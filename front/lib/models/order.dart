@@ -1,37 +1,37 @@
 class Order {
   final List<OrderItem> items;
-  final String payment_method;
+  final String paymentMethod;
 
   Order({
     required this.items,
-    required this.payment_method,
+    required this.paymentMethod,
   });
 
   Map<String, dynamic> toJson() {
     return {
       'items': items.map((item) => item.toJson()).toList(),
-      'payment_method': payment_method,
+      'payment_method': paymentMethod,
     };
   }
 }
 
 class OrderItem {
-  final int product_id;
-  final int? additional_id;
+  final int productId;
+  final int? additionalId;
   final int quantity;
   final double price;
 
   OrderItem({
-    required this.product_id,
-    this.additional_id,
+    required this.productId,
+    this.additionalId,
     required this.quantity,
     required this.price,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'product_id': product_id,
-      'additional_id': additional_id,
+      'product_id': productId,
+      'additional_id': additionalId,
       'quantity': quantity,
       'price': price,
     };

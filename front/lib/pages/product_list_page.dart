@@ -8,16 +8,16 @@ class ProductListPage extends StatelessWidget {
   final int categoryId;
   final ApiService apiService = ApiService();
 
-  ProductListPage({required this.categoryId});
+  ProductListPage({super.key, required this.categoryId});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Produtos'),
+        title: const Text('Produtos'),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               Navigator.push(
                 context,
@@ -31,11 +31,11 @@ class ProductListPage extends StatelessWidget {
         future: apiService.fetchProductsByCategory(categoryId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No products found'));
+            return const Center(child: Text('No products found'));
           }
 
           List<Product> products = snapshot.data!;
@@ -48,7 +48,7 @@ class ProductListPage extends StatelessWidget {
                 title: Text(product.name),
                 subtitle: Text(product.description),
                 trailing: Text('R\$ ${product.price.toStringAsFixed(2)}'),
-                leading: Image.network(product.image_url),
+                leading: Image.network(product.imageUrl),
                 onTap: () {
                   Navigator.push(
                     context,

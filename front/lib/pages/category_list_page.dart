@@ -6,7 +6,10 @@ import 'product_list_page.dart';
 import 'cart_page.dart';
 
 class CategoryListPage extends StatefulWidget {
+  const CategoryListPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CategoryListPageState createState() => _CategoryListPageState();
 }
 
@@ -148,7 +151,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.black, width: 1),
                     image: DecorationImage(
-                      image: NetworkImage(category.image_url),
+                      image: NetworkImage(category.imageUrl),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -180,7 +183,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
           subtitle: Text(product.description),
           trailing: Text('\$${product.price.toString()}'),
           leading: Image.network(
-            product.image_url,
+            product.imageUrl,
             width: 50,
             height: 50,
             fit: BoxFit.cover,

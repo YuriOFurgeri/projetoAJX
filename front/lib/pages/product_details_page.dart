@@ -11,15 +11,16 @@ class ProductDetailsPage extends StatefulWidget {
   final Product product;
   final ApiService apiService = ApiService();
 
-  ProductDetailsPage({required this.product});
+  ProductDetailsPage({super.key, required this.product});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   late Future<List<Additional>> _additionalFuture;
-  List<Additional> _selectedAdditionals = [];
+  final List<Additional> _selectedAdditionals = [];
 
   @override
   void initState() {
@@ -41,10 +42,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes do Produto'),
+        title: const Text('Detalhes do Produto'),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               Navigator.push(
                 context,
@@ -60,39 +61,39 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              widget.product.image_url,
+              widget.product.imageUrl,
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               widget.product.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               widget.product.description,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'Preço: R\$ ${widget.product.price.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             FutureBuilder<List<Additional>>(
               future: _additionalFuture,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Erro ao carregar adicionais: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(child: Text('Sem adicionais disponíveis'));
+                  return const Center(child: Text('Sem adicionais disponíveis'));
                 }
 
                 List<Additional> additionals = snapshot.data!;
@@ -100,11 +101,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Adicionais:',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     for (var additional in additionals)
                       CheckboxListTile(
                         title: Text('${additional.notes} ${additional.addoption ? '' : ''}'),
@@ -117,7 +118,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 );
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               
               onPressed: () {
@@ -128,22 +129,22 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 );
                 Provider.of<CartProvider>(context, listen: false).addItem(cartItem);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Produto adicionado ao carrinho!')),
+                  const SnackBar(content: Text('Produto adicionado ao carrinho!')),
                 );
               },
               style: ElevatedButton.styleFrom(
               
-              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.black, width: 2),
+                side: const BorderSide(color: Colors.black, width: 2),
               ),
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold, 
               ),
             ),
-              child: Text('Adicionar ao Carrinho'),
+              child: const Text('Adicionar ao Carrinho'),
             ),
           ],
         ),

@@ -8,11 +8,13 @@ import '../models/order.dart';
 class CartPage extends StatelessWidget {
   final ApiService apiService = ApiService();
 
+  CartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Carrinho'),
+        title:const Text('Carrinho'),
       ),
       body: Consumer<CartProvider>(
         builder: (context, cart, child) {
@@ -31,7 +33,7 @@ class CartPage extends StatelessWidget {
                         children: [
                           Text('R\$ ${(item.product.price * item.quantity).toStringAsFixed(2)}'),
                           IconButton(
-                            icon: Icon(Icons.delete, color: Colors.red),
+                            icon:const Icon(Icons.delete, color: Colors.red),
                             onPressed: () {
                               cart.removeItem(item);
                             },
@@ -44,7 +46,7 @@ class CartPage extends StatelessWidget {
                         height: 50,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
-                          return Icon(Icons.error);
+                          return const Icon(Icons.error);
                         },
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;
@@ -62,12 +64,12 @@ class CartPage extends StatelessWidget {
                   },
                 ),
               ),
-              Divider(),
+              const Divider(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Total: R\$ ${cart.totalPrice.toStringAsFixed(2)}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 16),
@@ -76,12 +78,12 @@ class CartPage extends StatelessWidget {
                   try {
                     Order order = Order(
                       items: cart.items.map((item) => OrderItem(
-                        product_id: item.product.id,
-                        additional_id: item.additional?.id,
+                        productId: item.product.id,
+                        additionalId: item.additional?.id,
                         quantity: item.quantity,
                         price: item.product.price,
                       )).toList(),
-                      payment_method: 'credit_card',
+                      paymentMethod: 'credit_card',
                       //lembrar de implementar pagamentos
                     );
 
